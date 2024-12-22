@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration Page</title>
+<style>
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #89A8B2;
+    color: #f0e6d6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Registration Section Styles */
+.registration-section {
+    background-color: #B3C8CF;
+    color: #f0e6d6;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.registration-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #5A6C57;
+}
+
+.registration-section p {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: #5A6C57;
+    margin-bottom: 30px;
+}
+
+/* Form Styles */
+.registration-form {
+    background-color: #89A8B2;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.6);
+}
+
+.registration-form label {
+    color: #5A6C57;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.registration-form .form-control {
+    background-color: #B3C8CF;
+    color: #5A6C57;
+    border: 1px solid #B3C8CF;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.registration-form .form-control:focus {
+    border-color: #d4b59c;
+    box-shadow: 0px 0px 5px rgba(212, 181, 156, 0.8);
+}
+
+.registration-form button {
+    background-color: #B3C8CF;
+    color: #5A6C57;
+    border: none;
+    padding: 12px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.registration-form button:hover {
+    background-color: #F1F5F6;
+}
+
+/* Placeholder Text */
+.registration-form .form-control::placeholder {
+    color: #5A6C57;
+}
+
+/* Success/Error Messages */
+.success-message, .error-message {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.success-message {
+    color: green;
+}
+
+.error-message {
+    color: red;
+}
+
+/* Login Link */
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-link a {
+    color: #5A6C57;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+</style>
+<script>
+    // Function to display the success or error message
+    function displayMessages() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const successMsg = urlParams.get('successMsg');
+        const errorMsg = urlParams.get('errorMsg');
+
+        if (successMsg) {
+            const successMessageDiv = document.getElementById('success-message');
+            successMessageDiv.innerHTML = successMsg;
+            successMessageDiv.style.display = 'block';
+        }
+
+        if (errorMsg) {
+            const errorMessageDiv = document.getElementById('error-message');
+            errorMessageDiv.innerHTML = errorMsg;
+            errorMessageDiv.style.display = 'block';
+        }
+    }
+
+    // Run the function when the page loads
+    window.onload = displayMessages;
+</script>
+</head>
+<body>
+    <div class="registration-section">
+        <h2>Register As User</h2>
+        <p><b>Complete the form below to create an account!</b></p>
+
+        <!-- Display success message -->
+        <div class="success-message" id="success-message" style="display:none;"></div>
+
+        <!-- Display error message -->
+        <div class="error-message" id="error-message" style="display:none;"></div>
+
+        <!-- Registration form -->
+        <form action="/regForm" method="POST" class="registration-form">
+            <div class="input-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" class="form-control" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" class="form-control" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" class="form-control" required>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+
+        <!-- Link to login page -->
+        <div class="login-link">
+            <p>If already registered, <a href="./loginview"><b>Click here to login</b></a>.</p>
+        </div>
+    </div>
+</body>
+</html>

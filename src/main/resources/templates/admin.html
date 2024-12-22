@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url("https://i.pinimg.com/736x/f0/da/54/f0da542117a6248a066dd70afec57ebf.jpg");
+            color: #333;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #3a6da4;
+            color: white;
+            padding: 20px 30px;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+        }
+
+        .navbar {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background: url("https://i.pinimg.com/736x/3f/1d/c5/3f1dc5f8f30eb62fc800efd9b14175b6.jpg");
+            background-size: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .actions button {
+            background: #3a6da4;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .actions button:hover {
+            background: #0056b3;
+        }
+
+        .actions input, .actions select {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #3a6da4;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        table td button {
+            background-color: #28a745;
+            border: none;
+            padding: 8px 12px;
+            color: white;
+            border-radius: 6px;
+        }
+
+        table td button:hover {
+            background-color: #218838;
+        }
+
+        select {
+            padding: 8px 15px;
+            border-radius: 8px;
+            border: 1px solid #dddddd;
+            background-color: rgb(135, 177, 225);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        select:hover,
+        select:focus {
+            border-color: #3a6da4;
+            outline: none;
+            background-color: #6794ba;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Inventory Management</h1>
+        <nav class="navbar">
+            <a href="./loginview">Log Out</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="actions">
+            <button type="button" id="addProductBtn" onclick="window.location.href='/adminPage/addProduct'">Add Product</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Category
+						<select id="categoryFilter" onchange="filterByCategory()" name="category">
+						    <option value="all" th:selected="${selectedCategory == null || selectedCategory == 'all'}">All</option>
+						    <option th:each="category : ${categories}" 
+						            th:value="${category}" 
+						            th:text="${category}" 
+						            th:selected="${selectedCategory == category}">
+						    </option>
+						</select>
+                    </th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+			<tbody>
+			    <tr th:each="products : ${products}">
+			        <td th:text="${products.productName}"></td>
+			        <td th:text="${products.category}"></td>
+			        <td th:text="${products.price}"></td>
+			        <td th:text="${products.stock}"></td>
+			        <td>
+						<a th:href="'/adminPage/update/' + ${products.id}"><button>Update</button></a>
+						<a th:href="'/adminPage/delete/' + ${products.id}"><button>Delete</button></a>
+			        </td>
+			    </tr>
+			</tbody>
+        </table>
+    </div>
+	<script>
+	    function filterByCategory() {
+	        const selectedCategory = document.getElementById('categoryFilter').value;
+	        const url = new URL(window.location.href);
+	        url.searchParams.set('category', selectedCategory);
+	        window.location.href = url.toString();
+	    }
+	</script>
+
+</body>
+</html>

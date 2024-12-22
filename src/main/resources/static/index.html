@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #89A8B2; 
+            color:#B3C8CF; 
+            font-family: Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #89A8B2;
+        }
+
+        .navbar a {
+            color: #f0e6d6 !important;
+        }
+
+        .navbar a:hover {
+            color: #E5E1DA!important;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /*.nav-buttons {
+            position: absolute;
+            right: 20px;
+        }
+
+        .nav-buttons .btn {
+            margin-left: 10px;
+            background-color: #fff;
+            color: #333;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-buttons .btn:hover {
+            background-color: #ff9800;
+        }*/
+
+        .btn-light-brown {
+            background-color: #B3C8CF; 
+            color: white;
+        }
+
+        .btn-light-brown:hover {
+            background-color: #B3C8CF; 
+            color: white;
+        }
+
+        .navbar-nav .nav-item {
+            margin-right: 10px; 
+        }
+
+        /* Hero section */
+        .hero {
+            background: url('./css/IMS.png') no-repeat center center/cover;
+            height: 100vh;
+            color: #1A1A19;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+           
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            position:relative;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            max-width: 700px;
+        }
+
+        /* About Us section */
+        .about-us {
+            padding: 40px 20px;
+            background-color: #B3C8CF;
+            color: #f0e6d6;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            margin: 30px auto;
+        }
+
+        .about-us h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .about-us p {
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        /* Gallery section */
+        .gallery {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #B3C8CF; 
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            color: #f0e6d6;
+        }
+
+        .gallery h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #f0e6d6;
+        }
+
+        .gallery img {
+            width: 100%; 
+            height: 250px; 
+            object-fit: cover; 
+            border-radius: 10px; 
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.6); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+        }
+
+        .gallery img:hover {
+            transform: translateY(-10px); 
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.8); 
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            margin-top: 40px;
+            background-color: #B3C8CF;
+            color: #f0e6d6;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            padding: 40px 20px;
+            margin-bottom: 30px;
+        }       
+
+        .testimonials h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .testimonials .row .p-4 {
+            background-color: #89A8B2;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            color: #f0e6d6;
+        }
+
+        .testimonials .blockquote-footer {
+            color: #f0e6d6;
+            width: 100%;
+            font-size: 1rem; 
+            margin-top: 10px;
+            padding-top: 5px; 
+            border-top: 1px solid rgba(255, 255, 255, 0.3); 
+            display: inline-block; 
+            text-align: right;
+        }
+
+
+        /* Find Us section */
+        .find-us {
+            background-color: #B3C8CF;
+            color: #f0e6d6;
+            padding: 20px 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            padding: 40px 20px;
+            margin-bottom: 30px;
+        }
+
+        .find-us iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            display: block; 
+            object-fit: cover; 
+            border-radius: 10px; 
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.6); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+        }
+
+        /* Support Section */
+        .support-section {
+            background-color: #B3C8CF;
+            color: #f0e6d6;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .support-section p{
+            text-align: center; 
+            font-family: Arial; 
+            color: rgb(229, 225, 218);
+        }
+
+        .support-form {
+            background-color: #89A8B2;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        .support-form label {
+            color: #E5E1DA;
+            font-weight: bold;
+        }
+
+        .support-form .form-control {
+            background-color: #B3C8CF;
+            color: #ECEBDE;
+            border: 1px solid #89A8B2;
+            border-radius: 5px;
+        }
+
+        .support-form .form-control:focus {
+            border-color: #89A8B2;
+            box-shadow: 0px 0px 5px rgba(179, 200, 207,0.8);
+        }
+
+        .support-form .form-check-input {
+            background-color: #B3C8CF;
+            border-color: #89A8B2;
+        }
+
+        .support-form .form-check-label {
+            color: #f0e6d6;
+        }
+
+        .support-form .btn-light-brown {
+            background-color: #B3C8CF;
+            color: rgb(229, 225, 218);
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .support-form .btn-light-brown:hover {
+            background-color: #E5E1DA;
+            color:rgb(165, 157, 132);
+        }
+
+        .support-form .form-control::placeholder {
+            color: rgb(229, 225, 218); /* Change placeholder text color to red */
+        }
+
+
+        /* Contact section */
+        /*.contact-info {
+            padding: 50px 20px;
+            background-color: #2d2626;
+            color: #f0e6d6;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+
+        .contact-info i {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-info .details {
+            font-size: 1.1rem;
+        }
+        */
+
+        /* Contact Us Section */
+        .contact-info {
+            background-color: #B3C8CF; 
+            color: #f0e6d6;
+            padding: 50px 20px;
+        }
+
+        .contact-info h3 {
+            color: #E5E1DA;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .contact-info p,
+        .contact-info ul li {
+            margin-bottom: 10px;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .contact-info ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        .contact-info ul li {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Space-icon n text */
+        }
+
+        .contact-info i {
+            font-size: 1.2rem; /* Icon size */
+            color: #E5E1DA; /* Icon color */
+        }
+
+        .contact-info ul li:hover i,
+        .contact-info ul li:hover {
+            color: #f0e6d6; /* icons */
+        }
+
+        .contact-info .row {
+            margin-left: 0%; 
+        }
+
+
+        footer {
+            /*margin-top: 40px;*/
+            text-align: center;
+            padding: 20px;
+            background-color: #B3C8CF;
+            color: #f0e6d6;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Inventory Management System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonials">Reviews</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#find-us">Find Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#support">Support</a></li>                   
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="btn btn-light-brown" href="./register.html" role="button">Sign Up</a></li>
+                    <li class="nav-item"><a class="btn btn-light-brown" href="./loginview" role="button">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Welcome to Inventory Management System</h1>
+        <p><strong><b>Your trusted partner for efficient and secure inventory solutions. We help streamline your operations with our cutting-edge services.</b></strong></p>
+    </div>
+
+    <!-- About Us Section -->
+    <div id="about" class="container about-us">
+        <h2><b>About Us</b></h2>
+        <p>
+            Welcome to the <strong>Inventory Management System (IMS)</strong>, a trusted name in inventory solutions for over 10 years. Ranked as the No. 1 choice by businesses worldwide, IMS has consistently delivered excellence, empowering organizations to optimize their supply chains and streamline operations effortlessly.
+          </p>
+          <p>
+            Our state-of-the-art platform is designed to cater to businesses of all sizes, offering cutting-edge features such as real-time inventory tracking, automated stock management, and detailed analytics. With a strong focus on accuracy and security, IMS ensures your inventory is always in the right place at the right time.
+          </p>
+          <p>
+            Join the thousands of satisfied clients who rely on us for unparalleled efficiency and reliability. Whether you're managing a small warehouse or a global supply chain, IMS is your go-to solution for seamless inventory management. Experience the future of inventory systems today and let us help you stay ahead of the competition!
+          </p>
+    </div>
+
+    <!-- Gallery Section -->
+    <div id="gallery" class="container gallery">
+        <h2><b>Our Services</b></h2>
+        <div class="row">
+            <div class="col-md-4">
+                <img src="./css/Screenshot 2024-12-01 203051.png" alt="Gallery Image 1">
+            </div>
+            <div class="col-md-4">
+                <img src="./css/1860x1050-cash-machine-gold.jpg" alt="Gallery Image 2">
+            </div>
+            <div class="col-md-4">
+                <img src="./css/warehouse-management-system.jpg" alt="Gallery Image 3">
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div id="testimonials" class="testimonials container">
+        <h2><b>What Our Clients Say</b></h2>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="p-4">
+                    <blockquote class="blockquote mb-0">"IMS transformed our business operations. Real-time tracking made inventory so much easier!"</blockquote>
+                    <footer class="blockquote-footer">Pratik, CEO of Gauda Corp</footer>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="p-4">
+                    <blockquote class="blockquote mb-0">"The most reliable inventory system we've ever used. It saved us time and reduced costs!"</blockquote>
+                    <footer class="blockquote-footer">Swati, Operations Manager of Adarsh Enterprises</footer>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Find Us Section -->
+    <div id="find-us" class="find-us container my-5">
+        <h2><b>Find Us</b></h2>
+        <div class="row justify-content-center">
+            <div class="col-md-10" style="height: 350px;">
+                <iframe 
+                    src="https://maps.google.com/maps?q=20.249068554254123,85.79999654644816&z=15&output=embed" 
+                    allowfullscreen 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Support Section -->
+    <div id="support" class="support-section container my-5 p-4">
+        <h2 class="text-center"><b>Need Assistance?</b></h2>
+        <p><b>For any Query, Feel free to fill this support form!!</b></p>
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-8">
+                <div class="support-form p-4">
+                    <form>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="firstName" class="form-label">First Name *</label>
+                                <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="lastName" class="form-label">Last Name *</label>
+                                <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address *</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="queryType" class="form-label">Query Type *</label>
+                            <div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="queryType" id="generalEnquiry" value="general" required>
+                                    <label class="form-check-label" for="generalEnquiry">General Enquiry</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="queryType" id="supportRequest" value="support">
+                                    <label class="form-check-label" for="supportRequest">Support Request</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message *</label>
+                            <textarea class="form-control" id="message" rows="4" placeholder="Enter your message" required></textarea>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="consent" required>
+                            <label class="form-check-label" for="consent">I consent to being contacted by the team *</label>
+                        </div>
+                        <button type="submit" class="btn btn-light-brown w-100">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <!--<div id="contact" class="contact-info">
+        <h2>Contact Us</h2>
+        <div>
+            <i class="fas fa-map-marker-alt"></i>
+            <p class="details">123 Street, City, Country</p>
+        </div>
+        <div>
+            <i class="fas fa-phone"></i>
+            <p class="details">+123-456-7890</p>
+        </div>
+        <div>
+            <i class="fas fa-envelope"></i>
+            <p class="details">info@inventory.com</p>
+        </div>
+    </div>-->
+
+    <div id="contact" class="contact-info">
+        <div class="container">
+            <div class="row justify-content-center">
+                <!-- Left -->
+                <div class="col-md-3 offset-md-1"> <!-- Offset column by 1 -->
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Location: XYZ, ABC, India</li>
+                        <li><i class="fas fa-phone-alt"></i> Mobile: 123-456-7890</li>
+                    </ul>
+                </div>
+    
+                <!-- Mid -->
+                <div class="col-md-3">
+                    <h3>Emails</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> information@gmail.com</li>
+                        <li><i class="fas fa-envelope"></i> support@gmail.com</li>
+                        <li><i class="fas fa-envelope"></i> feedback@gmail.com</li>
+                        <li><i class="fas fa-envelope"></i> services@gmail.com</li>
+                    </ul>
+                </div>
+    
+                <!-- Right -->
+                <div class="col-md-3">
+                    <h3>Follow Us On</h3>
+                    <ul>
+                        <li><i class="fab fa-twitter"></i> Twitter</li>
+                        <li><i class="fab fa-instagram"></i> Instagram</li>
+                        <li><i class="fab fa-linkedin"></i> LinkedIn</li>
+                        <li><i class="fab fa-facebook"></i> Facebook</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <footer>
+        <p>&copy; 2024 Inventory Management System. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
